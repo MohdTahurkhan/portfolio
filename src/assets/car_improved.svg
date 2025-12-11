@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" id="car-full" aria-hidden>
+  <g id="car-body" transform="translate(0,0)">
+    <rect x="20" y="20" rx="12" ry="12" width="140" height="36" fill="#0ea5e9" />
+    <path d="M30 20 C48 6, 88 6, 110 20" fill="#0369a1" />
+    <rect x="50" y="8" rx="6" ry="6" width="60" height="20" fill="#7dd3fc" />
+    <ellipse cx="60" cy="50" rx="10" ry="10" fill="#111827" id="wheel-left"/>
+    <circle cx="60" cy="50" r="4" fill="#9ca3af" id="hub-left"/>
+    <ellipse cx="140" cy="50" rx="10" ry="10" fill="#111827" id="wheel-right"/>
+    <circle cx="140" cy="50" r="4" fill="#9ca3af" id="hub-right"/>
+    <!-- subtle window highlight -->
+    <path d="M70 12 L110 12 L105 26 L75 26 Z" fill="rgba(255,255,255,0.25)"/>
+    <!-- headlight -->
+    <circle cx="162" cy="36" r="3" fill="#fef08a" />
+  </g>
+</svg>

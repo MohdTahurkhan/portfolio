@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* full page and theme */
+html,body,#root { height: 100%; }
+body { background: radial-gradient(ellipse at 10% 10%, rgba(14,165,233,0.06), transparent 10%), radial-gradient(ellipse at 90% 90%, rgba(139,92,246,0.06), transparent 10%); }
+
+/* animated background gradient (slow) */
+.bg-animated {
+  background: linear-gradient(120deg, rgba(14,165,233,0.08), rgba(139,92,246,0.08), rgba(56,189,248,0.06));
+  background-size: 300% 300%;
+  animation: bgShift 12s ease infinite;
+}
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* custom cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 120ms ease, background-color 180ms ease, width 120ms ease, height 120ms ease;
+  mix-blend-mode: difference;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+}
+.custom-cursor.inner {
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+}
+
+/* pointer small when over interactive */
+.cursor-hover {
+  width: 92px !important;
+  height: 92px !important;
+  background: rgba(14,165,233,0.12);
+  backdrop-filter: blur(4px);
+}
+
+/* subtle parallax layers */
+.parallax-layer {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* project card hover */
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.01);
+  transition: transform 180ms ease;
+}
+
+/* make scrollbar subtle */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.12); border-radius: 9999px; }
+
+
+/* smooth scrolling for anchor links */
+html { scroll-behavior: smooth; }
+
+/* intro overlay animation */
+.intro-overlay{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(14,165,233,0.06), rgba(139,92,246,0.06));
+  z-index: 60;
+  pointer-events: auto;
+  animation: introHide 1.9s ease forwards;
+}
+@keyframes introHide {
+  0% { opacity: 1; transform: translateY(0); }
+  70% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); pointer-events: none; visibility: hidden; }
+}
+.intro-card{
+  padding: 20px 28px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+  text-align: center;
+}
+
+
+
+
+/* Car intro runner */
+.car-runner { position: absolute; left:-30%; top:42%; width: 160%; height: 120px; pointer-events: none; overflow: visible; }
+.car-runner-img { width: 110px; position: absolute; top:0; left: -160px; transform: translateX(0); animation: driveX 1.2s cubic-bezier(.2,.9,.2,1) 0s 1 forwards; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.45)); }
+@keyframes driveX {
+  0% { transform: translateX(-30vw) scale(0.85) rotate(-6deg); opacity: 0.9; }
+  50% { transform: translateX(60vw) scale(1.05) rotate(2deg); opacity: 1; }
+  100% { transform: translateX(140vw) scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* custom cursor small car */
+.custom-cursor { position: fixed; left: 0; top: 0; width: 36px; height: 36px; pointer-events: none; transform: translate3d(-50%,-50%,0); z-index: 9999; transition: transform 0.08s linear; }
+.cursor-car { width: 36px; height: 36px; display:block; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.25)); transform-origin:center; }
+
+/* dotted arrow background: repeat small arrows with black dots behind */
+.body-arrow-pattern {
+  background: radial-gradient(ellipse at 10% 10%, rgba(15,23,42,1) 0 10%, transparent 40%),
+              radial-gradient(ellipse at 90% 90%, rgba(15,23,42,1) 0 10%, transparent 40%),
+              #020617;
+}
+
+/* small intro card */
+.intro-card { padding: 14px 20px; border-radius: 12px; background: rgba(255,255,255,0.03); backdrop-filter: blur(6px); text-align:center; }
+
+
+
+
+/* Enhanced car styles and wheel animations */
+.car-runner-img.enhanced { width: 140px; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45)); transform-origin: center; }
+.cursor-car.enhanced { width: 36px; height: 36px; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.25)); transition: transform .08s linear; }
+
+/* wheel rotation effect by rotating entire svg slightly and using a fake rotation via CSS on class */
+.cursor-moving .cursor-car.enhanced { transform: rotate(4deg) scale(1.02); }
+.cursor-moving .cursor-car.enhanced #wheel-left,
+.cursor-moving .cursor-car.enhanced #wheel-right { animation: wheelSpin 0.36s linear infinite; transform-origin: center; }
+
+@keyframes wheelSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Intro car trail */
+.car-trail { position: absolute; left: -10%; top: 46%; width: 60%; height: 6px; border-radius: 999px; background: linear-gradient(90deg, rgba(14,165,233,0.18), rgba(125,211,252,0.06)); filter: blur(6px); transform: translateX(-20%); opacity: .95; }
+
+/* Loading overlay */
+.loading-overlay { backdrop-filter: blur(4px); background: transparent; pointer-events: none; }
+.loading-card { padding: 18px 22px; border-radius: 12px; background: rgba(255,255,255,0.03); box-shadow: 0 18px 40px rgba(2,6,23,0.6); }
+.loading-car { width: 90px; animation: loadingBounce 1.2s ease-in-out infinite; transform-origin: center; }
+@keyframes loadingBounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px) scale(1.02); }
+  100% { transform: translateY(0); }
+}
+
+
+
+/* Cursor container */
+.cursor-wrapper {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+/* Car wrapper */
+.cursor-car-wrapper {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  display: block;
+}
+
+/* The car SVG */
+.cursor-car {
+  width: 42px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.35));
+  transform-origin: center;
+}
+
+/* Wheel spin animation */
+.cursor-moving .wheel {
+  animation: wheelSpin 0.36s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes wheelSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hide cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-wrapper { display: none; }
+}
+
+
+
+/* Cursor: lower visibility and trailing look */
+.cursor-car-wrapper.cursor-lowvis {
+  opacity: 0.42;
+  transition: opacity 0.25s ease, transform 0.08s linear;
+  mix-blend-mode: normal;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.12));
+}
+
+/* when moving make it slightly more visible */
+.cursor-moving { opacity: 0.95 !important; transform: scale(1.02); }
+
+/* also allow slight scale when moving */
+.cursor-moving .cursor-car { transform: scale(1.02); }
+
+
+
+/* Experience timeline */
+.experience-timeline { position: relative; padding-left: 18px; }
+.experience-timeline:before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg,#0ea5e9,transparent); opacity: .35; }
+.experience-item { position: relative; margin-bottom: 18px; padding: 12px 14px 12px 20px; }
+.experience-item:before { content: ''; position: absolute; left: -12px; top: 12px; width: 10px; height: 10px; border-radius: 50%; background: #0ea5e9; box-shadow: 0 0 0 4px rgba(14,165,233,0.06); }
+.experience-meta { font-size: 12px; color: #9ca3af; margin-top: 6px; }
+
+
+
+
+/* Project card hover */
+.project-card { transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s; }
+.project-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 20px 40px rgba(2,6,23,0.6); }
+
+
+
+
+/* Cursor improvements */
+.cursor-moving { filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25)); transform: translate3d(var(--cx,0), var(--cy,0), 0) rotate(6deg) scale(1.02); }
+.cursor-car-wrapper { transition: transform .08s linear, opacity .18s ease; }
+@media (hover: none) and (pointer: coarse) {
+  .cursor-wrapper { display: none !important; }
+}
+
+
+
+
+/* Hero typography polish */
+.hero-title { position: relative; }
+.hero-title::after { content: ''; position: absolute; left: 0; bottom: -8px; height: 3px; width: 40px; background: linear-gradient(90deg,#0ea5e9,#7dd3fc); border-radius: 2px; opacity: .9; transform-origin: left; transition: width .4s; }
+.hero-title:hover::after { width: 90px; }
+
+.hero-sub { opacity: .95; transform-origin: left; transition: opacity .5s ease, transform .5s ease; }
+
+.profile-glow { box-shadow: 0 20px 60px rgba(14,165,233,0.08); border: 1px solid rgba(125,211,252,0.04); }
+
